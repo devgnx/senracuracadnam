@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/produtos', [
+        'as' => 'products.index',
+        'uses' => 'ProductsController@index'
+    ]);
+
+    Route::post('/produtos/salvar', [
+        'as' => 'products.save',
+        'uses' => 'ProductsController@save'
+    ]);
+});
