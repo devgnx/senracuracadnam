@@ -15,12 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('/produtos', [
-        'as' => 'products.index',
-        'uses' => 'ProductsController@index'
-    ]);
+Route::get('/produto/{id}', [
+    'as' => 'product.index',
+    'uses' => 'ProductController@index'
+]);
 
+Route::get('/produtos/{id}', [
+    'as' => 'product.index',
+    'uses' => 'ProductsController@index'
+]);
+
+Route::group(['prefix' => 'admin'], function() {
     Route::post('/produtos/salvar', [
         'as' => 'products.save',
         'uses' => 'ProductsController@save'
