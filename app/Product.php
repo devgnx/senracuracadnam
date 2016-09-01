@@ -2,9 +2,14 @@
 
 namespace App;
 
-class Product extends \Eloquent
+use Eloquent;
+
+class Product extends Eloquent
 {
-    protected $fillable = ["name", "price", "category"];
+    use Slugglable;
+
+    protected $slugfield = "name";
+    protected $fillable = ["name", "price", "description", "category"];
 
     public function category()
     {
@@ -18,6 +23,10 @@ class Product extends \Eloquent
 
     public function getPriceAttribute()
     {
-        return "R$" . number_format($this->attributes['price'], 2, ',', '.');
+        return number_format($this->attributes['price'], 2, ',', '.');
+    }
+
+    public function getPrefixedPriceAttribute() {
+        return "R$ " . $this->getPriceAttribute();
     }
 }
