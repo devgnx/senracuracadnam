@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.main')
 
 @section('contents')
     <section id="services" class="service-item">

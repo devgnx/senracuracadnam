@@ -18,7 +18,7 @@ class Product extends Eloquent
 
     public function getImageAttribute()
     {
-        return url('/uploads/img/' . $this->attributes['id'] . '.jpeg');
+        return url('/uploads/img/products/' . $this->attributes['id'] . '.jpeg');
     }
 
     public function getPriceAttribute()
