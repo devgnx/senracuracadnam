@@ -15,5 +15,5 @@ Route::get('/produto/{id}', [
 
 Route::get('/produtos/{id}', [
     'as' => 'product.list',
-    'uses' => 'ProductController@index'
+    'uses' => 'ProductController@list'
 ]);

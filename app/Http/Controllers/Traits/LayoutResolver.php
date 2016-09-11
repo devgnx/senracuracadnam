@@ -14,6 +14,11 @@ trait LayoutResolver
             'name' => null,
         ];
 
+        $this->updatePageAttributes();
+    }
+
+    public function updatePageAttributes()
+    {
         if (!empty($this->title)) {
             $this->viewAttributes['page']['title'] = $this->title;
         }
@@ -44,6 +49,7 @@ trait LayoutResolver
 
     public function compactVars()
     {
+        $this->updatePageAttributes();
         return $this->viewAttributes;
     }
 }
