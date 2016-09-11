@@ -24,7 +24,7 @@ trait LayoutResolver
         }
 
         if (!empty($this->page)) {
-          $this->viewAttributes['page']['name'] = $this->page;
+            $this->viewAttributes['page']['name'] = $this->page;
         }
     }
 
