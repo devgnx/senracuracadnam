@@ -22,7 +22,13 @@ class ProductController extends Controller
         return view('product.index', $this->compactVars());
     }
 
-    public function list($id)
+    public function categories()
+    {
+        $this->addVar("categories", Category::all());
+        return view('product.categories', $this->compactVars());
+    }
+
+    public function category($id)
     {
         $this->addVar("category", Category::find($id));
         return view('product.list', $this->compactVars());
