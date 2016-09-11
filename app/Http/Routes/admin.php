@@ -15,6 +15,11 @@ Route::group([
         'uses' => 'AuthController@auth'
     ]);
 
+    Route::get('logout', [
+        'as' => 'logout',
+        'uses' => 'AuthController@logout'
+    ]);
+
     Route::group(['middleware' => 'auth'], function() {
         Route::get('/', [
             'as' => 'home',

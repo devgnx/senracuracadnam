@@ -23,6 +23,12 @@ class AuthController extends Controller
         }
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('admin::login');
+    }
+
     public function auth(Request $request)
     {
         if (Auth::check()) {
@@ -32,7 +38,7 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ], $request->input('remember'))) {
-            return redirect()->intended('admin::product:list');
+            return redirect()->intended(route('admin::product:list'));
 
         } else {
             return redirect()->back()->with('errors', ['Email e/ou senha inválidos!']);

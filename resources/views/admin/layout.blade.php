@@ -37,22 +37,30 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{{ route('admin::about:edit') }}">Painel administrativo</a>
+              <a class="navbar-brand" href="{{ route('admin::product:list') }}">Painel administrativo</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
               <ul class="nav navbar-nav">
+                  <li @if (!empty($page['name']) AND $page['name'] == 'product') class="active" @endif>
+                    <a href="{{ route('admin::product:list') }}">Produtos</a>
+                  </li>
                   <li @if (!empty($page['name']) AND $page['name'] == 'about') class="active" @endif>
                       <a href="{{ route('admin::about:edit') }}">Sobre a empresa</a>
-                  </li>
-                  <li @if (!empty($page['name']) AND $page['name'] == 'product') class="active" @endif>
-                      <a href="{{ route('admin::product:list') }}">Produtos</a>
                   </li>
                   <li @if (!empty($page['name']) AND $page['name'] == 'contact') class="active" @endif>
                       <a href="{{ route('admin::contact:edit') }}">Dados de Contato</a>
                   </li>
               </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a href="{{ route('admin::logout') }}">
+                  <i class="fa fa-sign-out"></i>
+                  Sair
+                </a>
+              </li>
+            </ul>
           </div>
           <!-- /.navbar-collapse -->
       </div>
