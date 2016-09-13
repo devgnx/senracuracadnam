@@ -10,4 +10,8 @@ class Category extends \Eloquent
     {
         return $this->hasMany(Product::class);
     }
+    public function getImageAttribute()
+    {
+        return url('/uploads/img/categories/' . $this->attributes['id'] . '.jpg');
+    }
 }

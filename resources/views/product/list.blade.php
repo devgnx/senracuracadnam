@@ -18,7 +18,7 @@
                 </a>
               </div>
               <div class="media-body">
-                <a class="open-add-to-cart" data-toggle="modal" data-target="#add-to-cart" href="javascript:void(0)">
+                <a class="open-add-to-cart" data-id="{{ $product->id }}" data-price="{{ $product->price }}" data-toggle="modal" data-target="#add-to-cart"  href="javascript:void(0)">
                   <h3 class="media-heading">{{ $product->name }}</h3>
                   <p>{{ $product->price }}</p>
                 </a>
@@ -38,7 +38,26 @@
           <h4 class="modal-title" id="add-to-cart-label">Adicionar ao Carrinho</h4>
         </div>
         <div class="modal-body">
-        ...
+          <form>
+            <input type="hidden" id="id" name="id" >
+            <input type="hidden" id="price" name="price" >
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nome</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nome">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Endereço</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Endereço">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Telefone</label>
+              <input type="tel" class="form-control" id="exampleInputEmail1" placeholder="Telefone">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Quantidade (Kg)</label>
+              <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Quantidade em kg">
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="pull-left btn btn-default" data-dismiss="modal">Fechar</button>

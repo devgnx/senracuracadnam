@@ -1,0 +1,12 @@
+.services-media {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.services-media .media-heading {
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px #823210;
+  font-size: 35px;
+}
