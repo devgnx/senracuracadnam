@@ -38,27 +38,27 @@ Route::group([
 
         Route::get('produtos', [
             'as' => 'product:list',
-            'uses' => 'ProductsController@index'
+            'uses' => 'ProductController@index'
         ]);
 
         Route::get('produto/novo', [
             'as' => 'product:create',
-            'uses' => 'ProductsController@create'
+            'uses' => 'ProductController@create'
         ]);
 
-        Route::get('produto/{slug}', [
+        Route::get('produto/{id}', [
             'as' => 'product:edit',
-            'uses' => 'ProductsController@edit'
+            'uses' => 'ProductController@edit'
         ]);
 
-        Route::post('produto/salvar/{slug?}', [
+        Route::post('produto/salvar/{id?}', [
             'as' => 'product:save',
-            'uses' => 'ProductsController@save'
+            'uses' => 'ProductController@save'
         ]);
 
-        Route::get('produto/remover/{slug}', [
+        Route::get('produto/remover/{id}', [
             'as' => 'product:delete',
-            'uses' => 'ProductsController@delete'
+            'uses' => 'ProductController@delete'
         ]);
 
         Route::get('contato', [

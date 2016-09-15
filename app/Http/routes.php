@@ -26,3 +26,29 @@ Route::get('/contato', [
     'as' => 'contact',
     'uses' => 'ContactController@index'
 ]);
+
+Route::group([
+    'as' => 'cart.',
+    'prefix' => 'carrinho',
+    'namespace' => 'Cart'
+], function() {
+    Route::get('/lista', [
+        'as' => 'list',
+        'uses' => 'CartController@index'
+    ]);
+
+    Route::post('/adicionar', [
+        'as' => 'add',
+        'uses' => 'CartController@add'
+    ]);
+
+    Route::get('/remover/{id}', [
+        'as' => 'remove',
+        'uses' => 'CartController@remove'
+    ]);
+
+    Route::get('/ver-quantidade-itens', [
+        'as' => 'count',
+        'uses' => 'CartController@count'
+    ]);
+});

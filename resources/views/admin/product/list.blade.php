@@ -22,11 +22,11 @@
           <tr>
             <td>{{ $value->id }}</td>
             <td>{{ $value->name }}</td>
-            <td>
+            <td class="text-right">
               <a class="btn btn-success" href="{{ route('admin::product:edit', $value->id) }}">
                 <i class="fa fa-pencil"></i> Editar
               </a>
-              <a class="btn btn-danger" href="{{ route('admin::product:delete', $value->id) }}">
+              <a class="btn btn-danger" href="{{ route('admin::product:delete', $value->id) }}" onclick="confirm('Tem certeza que deseja remover o produto?')">
                 <i class="fa fa-trash"></i> Apagar
               </a>
             </td>

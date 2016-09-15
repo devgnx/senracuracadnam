@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Traits\LayoutResolver;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\LayoutResolver;
 
 class ProductController extends Controller
 {
     use LayoutResolver;
 
     public $title = "Produtos";
-    public $page = "product";
+    public $page  = "product";
 
     public function index($id)
     {

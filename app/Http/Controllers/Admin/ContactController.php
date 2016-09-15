@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contact;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\LayoutResolver;
+
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
@@ -31,7 +32,9 @@ class ContactController extends Controller
         $contact->state   = $request->input('state');
 
         if ($contact->save()) {
-          return redirect()->route('admin::contact:edit')->with('success', ["Dados salvos com sucesso!"]);
+            return redirect()->route('admin::contact:edit')->with('success', [
+                "Dados salvos com sucesso!"
+            ]);
         }
     }
 }

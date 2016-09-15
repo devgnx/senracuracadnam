@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Traits;
 
+use App\Contact;
 
 trait LayoutResolver
 {
@@ -9,23 +10,26 @@ trait LayoutResolver
 
     public function __construct()
     {
-        $this->viewAttributes['page'] = [
+        $this->viewAttributes['page'] = (object) [
             'title' => null,
             'name' => null,
         ];
 
-        $this->updatePageAttributes();
+        $this->updateDefaultAttributes();
     }
 
-    public function updatePageAttributes()
+    public function updateDefaultAttributes()
     {
         if (!empty($this->title)) {
-            $this->viewAttributes['page']['title'] = $this->title;
+            $this->viewAttributes['page']->title = $this->title;
         }
 
         if (!empty($this->page)) {
-            $this->viewAttributes['page']['name'] = $this->page;
+            $this->viewAttributes['page']->name = $this->page;
         }
+
+        $this->viewAttributes['contact'] = Contact::first();
+        $this->viewAttributes['cart'] = session()->get('cart');
     }
 
     public function getVar($variable)
@@ -49,7 +53,7 @@ trait LayoutResolver
 
     public function compactVars()
     {
-        $this->updatePageAttributes();
+        $this->updateDefaultAttributes();
         return $this->viewAttributes;
     }
 }

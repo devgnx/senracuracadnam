@@ -16,7 +16,7 @@
             <label>Preço</label>
             <div class="input-group">
               <span class="input-group-addon">R$</span>
-              <input name="name" type="text" class="form-price form-control" value="{{ $product->price or old('price') }}">
+              <input name="price" type="text" class="form-price form-control" value="{{ $product->price or old('price') }}">
             </div>
           </div>
           <div class="form-group">
@@ -24,7 +24,7 @@
             <select name="category" class="form-control">
               @foreach($categories as $category)
                 <option value="{{ $category->id }}"
-                  @if(($product->category->id or old('category->id')) == $category->id) selected @endif>
+                  @if((isset($product->category->id) and ($product->category->id or old('category->id'))) == $category->id) selected @endif>
                     {{ $category->name }}
                 </option>
               @endforeach

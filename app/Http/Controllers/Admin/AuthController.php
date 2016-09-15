@@ -4,22 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\LayoutResolver;
+
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     use LayoutResolver;
 
-    protected $page  = 'services';
-    protected $title = 'Serviços';
+    protected $page  = "admin";
+    protected $title = "Painel Administrativo";
 
     public function login()
     {
         if (Auth::check()) {
-          return redirect()->route('admin::product:list');
+            return redirect()->route('admin::product:list');
         } else {
-          return view('admin.login');
+            return view('admin.login');
         }
     }
 
@@ -41,7 +42,9 @@ class AuthController extends Controller
             return redirect()->intended(route('admin::product:list'));
 
         } else {
-            return redirect()->back()->with('errors', ['Email e/ou senha inválidos!']);
+            return redirect()->back()->with('errors', [
+                "Email e/ou senha inválidos!"
+            ]);
         }
     }
 }

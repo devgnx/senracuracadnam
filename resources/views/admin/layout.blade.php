@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Highlander Bros.">
 
-    <title>{{ !empty($page['title']) ? $page['title'] : 'Admin - MOTOTÁXI MARINGÁ' }}</title>
+    <title>{{ !empty($page->title) ? $page->title : 'Admin - Mandacaru Carnes' }}</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('/assets_admin/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -43,13 +43,13 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
               <ul class="nav navbar-nav">
-                  <li @if (!empty($page['name']) AND $page['name'] == 'product') class="active" @endif>
+                  <li @if ($page->name == 'product') class="active" @endif>
                     <a href="{{ route('admin::product:list') }}">Produtos</a>
                   </li>
-                  <li @if (!empty($page['name']) AND $page['name'] == 'about') class="active" @endif>
+                  <li @if ($page->name == 'about') class="active" @endif>
                       <a href="{{ route('admin::about:edit') }}">Sobre a empresa</a>
                   </li>
-                  <li @if (!empty($page['name']) AND $page['name'] == 'contact') class="active" @endif>
+                  <li @if ($page->name == 'contact') class="active" @endif>
                       <a href="{{ route('admin::contact:edit') }}">Dados de Contato</a>
                   </li>
               </ul>
@@ -68,46 +68,7 @@
   </nav>
 
   <div class="container">
-    @if (session('success'))
-      @foreach(session('success') as $message)
-        <div class="alert alert-success" role="alert">
-          <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-          <span class="sr-only">Sucesso:</span>
-          {{ $message }}
-        </div>
-      @endforeach
-    @endif
-
-    @if (session('info'))
-      @foreach(session('info') as $message)
-        <div class="alert alert-info" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          <span class="sr-only">Atenção:</span>
-          {{ $message }}
-        </div>
-      @endforeach
-    @endif
-
-    @if (session('warning'))
-      @foreach(session('warning') as $message)
-        <div class="alert alert-warning" role="alert">
-          <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-          <span class="sr-only">Atenção:</span>
-          {{ $message}}
-        </div>
-      @endforeach
-    @endif
-
-    @if (session('error'))
-      @foreach(session('error') as $message)
-        <div class="alert alert-danger" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          <span class="sr-only">Erro:</span>
-          {{ $message }}
-        </div>
-      @endforeach
-    @endif
-
+    @include('partial.messages')
     @yield('content')
   </div>
 

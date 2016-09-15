@@ -8,12 +8,19 @@ class Product extends Eloquent
 {
     use Slugglable;
 
-    protected $slugfield = "name";
-    protected $fillable = ["name", "price", "description", "category"];
+    protected $slugColumn = "url";
+    protected $slugBaseColumn = "name";
+
+    protected $fillable = ["name", "price", "description", "category", "url"];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
     }
 
     public function getImageAttribute()
@@ -23,7 +30,13 @@ class Product extends Eloquent
 
     public function getPriceAttribute()
     {
-        return number_format($this->attributes['price'], 2, ',', '.');
+        if (!empty($this->attributes['price'])) {
+            $price = (float) $this->attributes['price'];
+        } else {
+            $price = 0;
+        }
+
+        return number_format($price, 2, ',', '.');
     }
 
     public function getPrefixedPriceAttribute() {

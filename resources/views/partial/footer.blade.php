@@ -9,6 +9,7 @@
           <li><a href="{{ route('home') }}">Home</a></li>
           <li><a href="{{ route('product.categories') }}">Produtos</a></li>
           <li><a href="{{ route('contact') }}">Contato</a></li>
+          <li><a href="{{ route('cart.list') }}" onclick="return false;">Carrinho</a></li>
         </ul>
       </div>
     </div>

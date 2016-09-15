@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Product::creating(function($product) {
-            return $product->makeSlug();
+            return $product->saveSlug();
         });
     }
 
