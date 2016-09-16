@@ -35,7 +35,7 @@
           <li class="active">
             <a href="{{ route('cart.list') }}" data-toggle="modal" data-target="#view-cart">
               <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Carrinho
-              <span class="cart-item-count label label-danger">{{ $cart->items()->count() }}</span>
+              <span class="cart-item-count label label-danger">{{ !empty($cart) ? $cart->items()->count() : 0 }}</span>
             </a>
           </li>
         </ul>

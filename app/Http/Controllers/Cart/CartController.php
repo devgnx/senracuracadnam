@@ -31,6 +31,12 @@ class CartController extends Controller
         return view('partial.cart.list', $this->compactVars());
     }
 
+    public function getAddForm()
+    {
+        $this->addVar('cart', $this->cart);
+        return view('partial.cart.add-form', $this->compactVars());
+    }
+
     public function add(Request $request)
     {
         $this->fillCustomerData($request);

@@ -13,4 +13,15 @@ class Cart extends Eloquent
     {
         return $this->hasMany(CartItem::class);
     }
+
+    public function getTotalAttribute()
+    {
+        $total = $this->items()->sum('price');
+        return $total ? $total : 0;
+    }
+
+    public function getTotalFormated($prefix = 'R$')
+    {
+        return ($prefix !== null ? $prefix . " " : '') . number_format($this->total, 2, ',', '.');
+    }
 }

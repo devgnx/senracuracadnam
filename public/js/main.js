@@ -7,13 +7,16 @@ jQuery(function($) {
     }
 	});
 
+	$(document).on('hidden.bs.modal', function () {
+		$('.modal').removeData('bs.modal')
+	});
+
 	//#main-slider
 	$(function(){
 		$('#main-slider.carousel').carousel({
 			interval: 8000
 		});
 	});
-
 
 	// accordian
 	$('.accordion-toggle').on('click', function(){

@@ -37,6 +37,11 @@ Route::group([
         'uses' => 'CartController@index'
     ]);
 
+    Route::get('/formulario', [
+        'as' => 'form',
+        'uses' => 'CartController@getAddForm'
+    ]);
+
     Route::post('/adicionar', [
         'as' => 'add',
         'uses' => 'CartController@add'

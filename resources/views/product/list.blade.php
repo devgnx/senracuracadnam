@@ -21,14 +21,14 @@
                 <h3 class="media-heading">{{ $product->name }}</h3>
                 <p>{{ $product->price }}</p>
                 <div class="text-center">
-                  <button class="open-add-to-cart btn btn-primary btn-lg"
-                          data-id="{{ $product->id }}"
-                          data-price="{{ $product->price }}"
-                          data-toggle="modal"
-                          data-target="#add-to-cart"
-                          type="button">
+                  <a class="open-add-to-cart btn btn-primary btn-lg"
+                     data-href="{{ route('cart.form') }}"
+                     data-id="{{ $product->id }}"
+                     data-price="{{ $product->price }}"
+                     data-toggle="modal"
+                     data-target="#add-to-cart">
                     Adicionar ao Pedido
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -37,6 +37,4 @@
       </div><!--/.row-->
     </div><!--/.container-->
   </section><!--/#services-->
-
-  @include('partial.cart.add-form')
 @endsection

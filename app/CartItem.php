@@ -6,7 +6,6 @@ use Eloquent;
 
 class CartItem extends Eloquent
 {
-    //protected $table = "cart_items";
     protected $fillable = ["name", "price", "quantity"];
 
     public function cart()
