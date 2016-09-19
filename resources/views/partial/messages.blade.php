@@ -1,6 +1,6 @@
 @if (session('success'))
-  @foreach(session('success') as $message)
-    <div class="alert alert-success" role="alert">
+  @foreach(session('success') as $type => $message)
+    <div class="alert alert-{{ App\Enum\MessageTypes::has($type) ? App\Enum\MessageTypes::get($type) : 'success' }}" role="alert">
       <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
       <span class="sr-only">Sucesso:</span>
       {{ $message }}

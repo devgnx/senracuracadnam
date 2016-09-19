@@ -73,11 +73,11 @@ class CartController extends Controller
         if (CartItem::find($request->route('id'))->delete()) {
             $message = "Produto removido do carrinho!";
             if ($request->isXmlHttpRequest()) {
-                session()->flash('success', [$message]);
+                session()->flash('success', ['red' => $message]);
                 return $this->index();
             } else {
                 return redirect()->route('cart.index')->with("success", [
-                    $message
+                    'red' => $message
                 ]);
             }
         } else {
