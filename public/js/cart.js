@@ -1,4 +1,19 @@
 (function($, document, window, undefined) {
+
+  var cart = {
+    viewCart:  '#view-cart',
+    addToCart: '#add-to-cart',
+    addToCartForm: '#add-to-cart-form',
+    $loader: (function() {
+      var $modalContent = $('<div class="modal-body"></div>');
+      var $container    = $('<div class="text-center" style="font-size: 80px; margin: 100px;"></div>');
+
+      return $container
+        .append('<i class="fa fa-pulse fa-spinner"></i>')
+        .appendTo($modalContent);
+    })()
+  };
+
   $(document).on("submit", "#add-to-cart-form", function(e) {
     e.preventDefault();
 
@@ -9,7 +24,7 @@
     })
     .done(function(result) {
       $(document).trigger('added.item.cart');
-      $("#add-to-cart").html(result);
+      $(cart.addToCart).html(result);
     });
 
     return false;
@@ -32,7 +47,12 @@
       $('#id').val(id);
       $('#price').val(price);
     }
-  }).on("shown.bs.modal", "#add-to-cart", function(modalEvent) {
+  }).on("shown.bs.modal", cart.addToCart+','+cart.viewCart, function() {
+    var $this = $(this);
+    $(document).ajaxSend(function(event, xhr, settings) {
+      $this.find('.modal-content').html(cart.$loader);
+    });
+  }).on("shown.bs.modal", cart.addToCart, function(modalEvent) {
     $(document).ajaxComplete(function() {
       var e = $.Event('added-cart-form', {
         relatedTarget: modalEvent.relatedTarget
@@ -41,7 +61,7 @@
       $(document).trigger(e);
     });
 
-  }).on("shown.bs.modal", "#view-cart", function() {
+  }).on("shown.bs.modal", cart.viewCart, function() {
     var $modal = $(this);
 
     var fixModalHeight = function() {
@@ -49,7 +69,7 @@
       var $modalFooter = $modal.find('.modal-footer');
       var offset = $container.offset().top + $modalFooter.height();
       $container.height($(window).height() - offset - 170);
-    }
+    };
 
     fixModalHeight();
     $(document).ajaxComplete(fixModalHeight);
@@ -71,7 +91,6 @@
     })
     .done(function(total) {
       $('.cart-item-count').text( total );
-
     });
 
   }).on("removed.item.cart", function() {
