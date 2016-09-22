@@ -32,6 +32,8 @@
       }
     };
   </script>
+
+  @yield('head')
 </head><!--/head-->
 
 <body class="homepage">
