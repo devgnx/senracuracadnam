@@ -28,32 +28,36 @@ Route::get('/contato', [
 ]);
 
 Route::group([
-    'as' => 'cart.',
     'prefix' => 'carrinho',
-    'namespace' => 'Cart'
+    'namespace' => 'Order'
 ], function() {
     Route::get('/lista', [
-        'as' => 'list',
+        'as' => 'cart.list',
         'uses' => 'CartController@index'
     ]);
 
     Route::get('/formulario', [
-        'as' => 'form',
+        'as' => 'cart.form',
         'uses' => 'CartController@getAddForm'
     ]);
 
     Route::post('/adicionar', [
-        'as' => 'add',
+        'as' => 'cart.add',
         'uses' => 'CartController@add'
     ]);
 
     Route::get('/remover/{id}', [
-        'as' => 'remove',
+        'as' => 'cart.remove',
         'uses' => 'CartController@remove'
     ]);
 
     Route::get('/ver-quantidade-itens', [
-        'as' => 'count',
+        'as' => 'cart.count',
         'uses' => 'CartController@count'
+    ]);
+
+    Route::post('/enviar-pedido', [
+        'as' => 'order.save',
+        'uses' => 'OrderController@save'
     ]);
 });

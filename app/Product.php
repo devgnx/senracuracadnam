@@ -23,6 +23,11 @@ class Product extends Eloquent
         return $this->hasMany(CartItem::class);
     }
 
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function getImageAttribute()
     {
         return url('/uploads/img/products/' . $this->attributes['id'] . '.jpeg');

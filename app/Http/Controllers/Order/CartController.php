@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Cart;
+namespace App\Http\Controllers\Order;
 
 use App\Cart;
 use App\CartItem;
 use App\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\LayoutResolver;
-
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -64,14 +63,25 @@ class CartController extends Controller
                 ]);
             }
         } else {
-            dd('Erro ao salvar carrinho!');
+            $message = 'Não foi possível salvar os dados do carrinho!';
+            if ($request->isXmlHttpRequest()) {
+                session()->flash('error', [$message]);
+                return $this->index();
+            } else {
+                return redirect()->route('cart.index')->with("error", [
+                    $message
+                ]);
+            }
         }
     }
 
     public function remove(Request $request)
     {
         if (CartItem::find($request->route('id'))->delete()) {
+            $this->cart = $request->session()->put('cart', Cart::find($this->cart->id));
+
             $message = "Produto removido do carrinho!";
+
             if ($request->isXmlHttpRequest()) {
                 session()->flash('success', ['red' => $message]);
                 return $this->index();
@@ -81,7 +91,15 @@ class CartController extends Controller
                 ]);
             }
         } else {
-            dd('Erro ao remover item!');
+            $message = 'Não foi possível remover item do carrinho!';
+            if ($request->isXmlHttpRequest()) {
+                session()->flash('error', [$message]);
+                return $this->index();
+            } else {
+                return redirect()->route('cart.index')->with("error", [
+                    $message
+                ]);
+            }
         }
     }
 

@@ -4,14 +4,14 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <h4 class="modal-title" id="view-cart-label">Carrinho</h4>
     </div>
-    <form id="add-to-cart-form" action="{{ route('cart.add') }}" method="post">
+    <form id="add-to-cart-form" action="{{ route('order.save') }}" method="post">
       {{ csrf_field() }}
       <input type="hidden" id="id" name="id">
 
       <div class="modal-body">
         @include('partial.messages')
         @if($cart->items()->count())
-          <div class="cart-list-container" style="overflow: scroll;">
+          <div class="cart-list-container">
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -38,14 +38,16 @@
             </table>
           </div>
 
-          <h2>{{ $cart->getTotalFormated() }}</h2>
+          <h2 class="text-right">Total: {{ $cart->getTotalFormated() }}</h2>
         @else
           <h2 class="text-center">Não há produtos no carrinho!</h2>
         @endif
       </div>
       <div class="modal-footer">
         <button type="button" class="pull-left btn btn-default" data-dismiss="modal">Fechar</button>
-        <button type="submit" class="btn btn-success">Fazer Pedido</button>
+        @if($cart->items()->count())
+          <button type="submit" class="btn btn-success">Finalizar Pedido</button>
+        @endif
       </div>
     </form>
   </div>

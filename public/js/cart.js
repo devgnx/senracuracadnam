@@ -11,17 +11,7 @@
       return $container
         .append('<i class="fa fa-pulse fa-spinner"></i>')
         .appendTo($modalContent);
-    })(),
-    ajustVewCart: function() {
-      var $modal = $(cart.viewCart);
-      var $container   = $modal.find('.cart-list-container');
-      var $modalFooter = $modal.find('.modal-footer');
-
-      if (!!$container.length) {
-        var offset = $container.offset().top + $modalFooter.height();
-        $container.height($(window).height() - offset - 170);
-      }
-    },
+    })()
   };
 
   $(document).on("submit", "#add-to-cart-form", function(e) {
@@ -70,14 +60,6 @@
 
       $(document).trigger(e);
     });
-
-  }).on("shown.bs.modal", cart.viewCart, function() {
-    if (!$(this).data('first-ajust')) {
-      cart.ajustVewCart();
-      $(this).data('first-ajust', true);
-    }
-
-    $(document).ajaxComplete(cart.ajustVewCart);
 
   }).on('hidden.bs.modal', function () {
     $('#view-cart').removeData('bs.modal');
