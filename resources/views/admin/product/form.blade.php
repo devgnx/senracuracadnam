@@ -49,6 +49,6 @@
 @endsection
 
 @section('scripts')
-  <script src="{{ asset('/assets_admin/js/jquery.maskMoney.min.js') }}"></script>
-  <script src="{{ asset('/assets_admin/js/products.js') }}"></script>
+  <script src="{{ asset('/assets-admin/js/jquery.maskMoney.min.js') }}"></script>
+  <script src="{{ asset('/assets-admin/js/products.js') }}"></script>
 @endsection

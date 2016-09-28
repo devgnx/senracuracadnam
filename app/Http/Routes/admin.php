@@ -36,6 +36,25 @@ Route::group([
             'uses' => 'AboutController@save'
         ]);
 
+        Route::get('servico/novo', [
+            'as' => 'service:create',
+            'uses' => 'AboutController@editService'
+        ]);
+
+        Route::get('servico/{id}', [
+            'as' => 'service:edit',
+            'uses' => 'AboutController@editService'
+        ]);
+
+        Route::post('servico/salvar/{id?}', [
+            'as' => 'service:save',
+            'uses' => 'AboutController@saveService'
+        ]);
+        Route::get('servico/remover/{id}', [
+            'as' => 'service:delete',
+            'uses' => 'AboutController@deleteService'
+        ]);
+
         Route::get('produtos', [
             'as' => 'product:list',
             'uses' => 'ProductController@index'

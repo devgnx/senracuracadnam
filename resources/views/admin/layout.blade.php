@@ -10,13 +10,13 @@
     <title>{{ !empty($page->title) ? $page->title : 'Admin - Mandacaru Carnes' }}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('/assets_admin/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets-admin/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- CSS -->
-    <link href="{{ asset('/assets_admin/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets-admin/css/main.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
-    <link href="{{ asset('/assets_admin/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets-admin/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,10 +73,10 @@
   </div>
 
   <!-- jQuery -->
-  <script src="{{ asset('/assets_admin/js/jquery.js') }}"></script>
+  <script src="{{ asset('/assets-admin/js/jquery.js') }}"></script>
 
   <!-- Bootstrap Core JavaScript -->
-  <script src="{{ asset('/assets_admin/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('/assets-admin/js/bootstrap.min.js') }}"></script>
 
   @yield('scripts')
 </body>
