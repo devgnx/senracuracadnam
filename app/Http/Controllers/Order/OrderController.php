@@ -6,10 +6,32 @@ use App\Contact;
 use App\Order;
 use App\OrderItem;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\LayoutResolver;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    use LayoutResolver;
+
+    protected $title = 'Pedidos';
+    protected $page = 'order';
+
+    public function index()
+    {
+        $this->addVar('orders', (object) [
+            'undelivered' => Order::undelivered()->get(),
+            'delivered' => Order::delivered()->get()
+        ]);
+
+        return view('admin.orders.list', $this->compactVars());
+    }
+
+    public function view($id)
+    {
+        $this->addVar('order', Order::find($id));
+        return view('admin.orders.view', $this->compactVars());
+    }
+
     public function save(Request $request)
     {
         $cart = session('cart');
