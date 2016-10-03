@@ -14,9 +14,4 @@ class Category extends \Eloquent
     {
         return url('/uploads/img/categories/' . $this->attributes['id'] . '.jpg');
     }
-
-    // public function scopeSortByName()
-    // {
-    //     return $this->orderBy
-    // }
 }
