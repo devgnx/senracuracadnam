@@ -90,6 +90,11 @@ Route::group([
             'uses' => 'ProductController@delete'
         ]);
 
+        Route::post('categoria/salvar/{id?}', [
+            'as' => 'category:save',
+            'uses' => 'CategoryController@save'
+        ]);
+
         Route::get('contato', [
             'as' => 'contact:edit',
             'uses' => 'ContactController@edit'

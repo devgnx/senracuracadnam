@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,6 +78,13 @@
 
   <!-- jQuery -->
   <script src="{{ asset('/assets-admin/js/jquery.js') }}"></script>
+  <script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+  </script>
 
   <!-- Bootstrap Core JavaScript -->
   <script src="{{ asset('/assets-admin/js/bootstrap.min.js') }}"></script>
