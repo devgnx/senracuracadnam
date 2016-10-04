@@ -60,7 +60,6 @@ class OrderController extends Controller
             $order,
             $contact
         ) {
-            $m->from('naoresponder@mandacarucarnes.com.br', 'Site');
             $m->to($contact->email, 'Mandacaru Carnes')->subject('Novo pedido!');
         });
     }
