@@ -31,7 +31,7 @@
         <div class="col-xs-4">
           <a href="{{ route('admin::about:edit') }}" class="btn btn-default">Voltar</a>
         </div>
-        <div class="col-xs-2 text-right">
+        <div class="col-xs-8 col-md-2 text-right">
           <button class="btn btn-success" type="submit">Salvar</button>
         </div>
       </div>

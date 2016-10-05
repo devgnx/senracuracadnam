@@ -14,6 +14,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('delivered');
             $table->string('name');
             $table->string('telephone');
             $table->string('address');
@@ -48,6 +49,7 @@ class CreateOrdersTable extends Migration
     public function down()
     {
         Schema::drop('orders');
+        Schema::drop('order_items');
         Schema::drop('customers');
     }
 }

@@ -55,6 +55,16 @@ Route::group([
             'uses' => 'AboutController@deleteService'
         ]);
 
+        Route::get('pedidos', [
+            'as' => 'order:list',
+            'uses' => '\App\Http\Controllers\Order\OrderController@index'
+        ]);
+
+        Route::get('pedido/{id}', [
+            'as' => 'order:view',
+            'uses' => '\App\Http\Controllers\Order\OrderController@view'
+        ]);
+
         Route::get('produtos', [
             'as' => 'product:list',
             'uses' => 'ProductController@index'
@@ -78,6 +88,11 @@ Route::group([
         Route::get('produto/remover/{id}', [
             'as' => 'product:delete',
             'uses' => 'ProductController@delete'
+        ]);
+
+        Route::post('categoria/salvar/{id?}', [
+            'as' => 'category:save',
+            'uses' => 'CategoryController@save'
         ]);
 
         Route::get('contato', [

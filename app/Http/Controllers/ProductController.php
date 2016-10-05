@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     use LayoutResolver;
 
-    public $title = "Produtos";
+    public $title = "Produtos - Mandacaru Carnes";
     public $page  = "product";
 
     public function index($id)

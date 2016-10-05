@@ -18,7 +18,7 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect()->route('admin::product:list');
+            return redirect()->route('admin::order:list');
         } else {
             return view('admin.login');
         }
@@ -33,13 +33,13 @@ class AuthController extends Controller
     public function auth(Request $request)
     {
         if (Auth::check()) {
-            return redirect()->route('admin::product:list');
+            return redirect()->route('admin::order:list');
 
         } else if (Auth::attempt([
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ], $request->input('remember'))) {
-            return redirect()->intended(route('admin::product:list'));
+            return redirect()->intended(route('admin::order:list'));
 
         } else {
             return redirect()->back()->with('errors', [

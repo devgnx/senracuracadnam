@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     use LayoutResolver;
 
-    protected $page  = 'products';
+    protected $page  = 'product';
     protected $title = 'Produto';
 
     public function index(Request $request)
