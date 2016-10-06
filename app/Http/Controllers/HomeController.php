@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $this->addVar('about', About::first());
+        $this->addVar('about', About::firstOrNew([]));
         $this->title = $this->getVar('about')->title;
         return view('home', $this->compactVars());
     }
