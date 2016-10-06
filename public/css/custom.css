@@ -10,3 +10,8 @@
   text-shadow: 2px 2px #823210;
   font-size: 35px;
 }
+
+.navbar-brand img {
+  height: 54px;
+
+}
