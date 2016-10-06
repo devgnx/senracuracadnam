@@ -28,7 +28,7 @@ trait LayoutResolver
             $this->viewAttributes['page']->name = $this->page;
         }
 
-        $this->viewAttributes['contact'] = Contact::first();
+        $this->viewAttributes['contact'] = Contact::firstOrNew([]);
         $this->viewAttributes['cart'] = session()->get('cart');
     }
 
