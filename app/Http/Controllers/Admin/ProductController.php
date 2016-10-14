@@ -32,14 +32,7 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-        if ($id = $request->route('id')) {
-            $product = Product::find($id);
-        }
-
-        if (!isset($product)) {
-            $product = new Product();
-        }
-
+        $product = Product::findOrNew($request->route('id'));
         $product->name  = $request->input('name');
         $product->price = $request->input('price', 0);
         $product->description = $request->input('description');
@@ -50,11 +43,9 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('image') && $request->image->isValid()) {
-            $path = public_path() . '/uploads/img/products/';
-            $file = str_slug($product->name) . '.' . $request->image->extension();
-
-            $request->image->move($path, $file);
-            $product->image = $file;
+            $filename = str_slug($product->name) . '.' . $request->image->extension();
+            $request->image->move(public_path('/uploads/img/products/'), $filename);
+            $product->image = $filename;
         }
 
         if ($product->save()) {

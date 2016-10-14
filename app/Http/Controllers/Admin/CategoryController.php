@@ -28,27 +28,16 @@ class CategoryController extends Controller
 
     public function save(Request $request)
     {
-        if ($id = $request->route('id')) {
-            $category = Category::find($id);
-        }
-
-        if (!isset($category)) {
-            $category = new Category();
-        }
-
+        $category = Category::findOrNew($request->route('id'));
         $category->name  = $request->input('name');
 
+        if ($request->hasFile('image') && $request->image->isValid()) {
+            $filename = str_slug($category->name) . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads/img/categories'), $filename);
+            $category->image = $filename;
+        }
+
         if ($category->save()) {
-
-            if ($request->hasFile('image')) {
-                $filename = $category->id . '.' . $request->image->extension();
-                if ($request->image->isValid() &&
-                    $image->move($filename, public_path('uploads/img/categories'))
-                ) {
-                    $category->image = $filename;
-                }
-            }
-
             $request->request->add(['id' => $category->id]);
             return $this->index($request);
         } else {

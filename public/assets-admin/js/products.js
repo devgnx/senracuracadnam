@@ -11,9 +11,21 @@
   }).on('submit', '#new-category form', function(e) {
     e.preventDefault();
 
-    $.post(this.action, $(this).serialize()).done(function(data) {
+    var formData = new FormData(this);
+
+    $.ajax({
+      type: 'post',
+      url: this.action,
+      data: formData,
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+    }).done(function(data) {
       if (!data) return;
+
       var $category = $('#category').html('');
+
       $.each(data, function(key, category) {
         $('<option></option>')
           .val(category.value)
@@ -21,6 +33,7 @@
           .attr('selected', category.selected)
           .appendTo($category);
       });
+
       $('#new-category-trigger').hide();
       $('#category-list').show();
       $('#new-category').modal('hide');

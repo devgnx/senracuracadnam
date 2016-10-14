@@ -33,11 +33,9 @@ class BannerController extends Controller
         $banner->description = $request->input('description');
 
         if ($request->hasFile('image') && $request->image->isValid()) {
-            $path = public_path() . '/uploads/img/banners/';
-            $file = str_slug($banner->description) . '.' . $request->image->extension();
-
-            $request->image->move($path, $file);
-            $banner->image = $file;
+            $filename = str_slug($banner->description) . '.' . $request->image->extension();
+            $request->image->move(public_path('/uploads/img/banners/'), $filename);
+            $banner->image = $filename;
         }
 
         if ($banner->save()) {
