@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner;
 use App\About;
 use App\Contact;
 use App\Product;
@@ -19,8 +20,10 @@ class HomeController extends Controller
     public function index()
     {
         $this->addVar('services', Service::all());
+        $this->addVar('banners', Banner::all());
         $this->addVar('about', About::firstOrNew([]));
         $this->title = $this->getVar('about')->title;
+
         return view('home', $this->compactVars());
     }
 }

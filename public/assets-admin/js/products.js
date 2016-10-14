@@ -4,10 +4,13 @@
       thousands: ".",
       decimal: ","
     });
+
   }).on('click', '#new-category button[type="submit"]', function() {
     $('#new-category form').submit();
+
   }).on('submit', '#new-category form', function(e) {
     e.preventDefault();
+
     $.post(this.action, $(this).serialize()).done(function(data) {
       if (!data) return;
       var $category = $('#category').html('');
@@ -22,7 +25,9 @@
       $('#category-list').show();
       $('#new-category').modal('hide');
     });
+
     return false;
+
   }).on('hidden.bs.modal', '#new-category', function() {
     $(this).find('form').get(0).reset();
   });

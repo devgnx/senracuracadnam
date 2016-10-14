@@ -50,6 +50,9 @@
           <li @if ($page->name == 'product') class="active" @endif>
             <a href="{{ route('admin::product:list') }}">Produtos</a>
           </li>
+          <li @if ($page->name == 'banner') class="active" @endif>
+            <a href="{{ route('admin::banner:list') }}">Banners</a>
+          </li>
           <li @if ($page->name == 'about') class="active" @endif>
             <a href="{{ route('admin::about:edit') }}">Sobre a empresa</a>
           </li>
@@ -71,9 +74,17 @@
     <!-- /.container -->
   </nav>
 
-  <div class="container">
+  <div class="container" style="margin-bottom: 70px;">
     @include('partial.messages')
     @yield('content')
+  </div>
+
+  <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text">
+        Highlander Bros. &copy; 2016
+      </p>
+    </div>
   </div>
 
   <!-- jQuery -->
@@ -89,6 +100,7 @@
   <!-- Bootstrap Core JavaScript -->
   <script src="{{ asset('/assets-admin/js/bootstrap.min.js') }}"></script>
 
+  <script src="{{ asset('/assets-admin/js/custom.js') }}"></script>
   @yield('scripts')
 </body>
 

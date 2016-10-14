@@ -30,7 +30,11 @@ class Product extends Eloquent
 
     public function getImageAttribute()
     {
-        return url('/uploads/img/products/' . $this->attributes['id'] . '.jpeg');
+        if (!empty($this->attributes['image'])) {
+            return url('/uploads/img/products/' . $this->attributes['image']);
+        } else {
+            return '';
+        }
     }
 
     public function getPriceAttribute()

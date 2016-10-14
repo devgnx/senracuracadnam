@@ -22,18 +22,10 @@ class ProductController extends Controller
         return view('admin.product.list', $this->compactVars());
     }
 
-    public function create(Request $request)
+    public function form(Request $request)
     {
         $request->session()->forget('warning');
-        $this->addVar('product', new Product());
-        $this->addVar('categories', Category::all());
-        return view('admin.product.form', $this->compactVars());
-    }
-
-    public function edit(Request $request)
-    {
-        $request->session()->forget('warning');
-        $this->addVar('product', Product::findOrFail($request->route('id')));
+        $this->addVar('product', Product::findOrNew($request->route('id')));
         $this->addVar('categories', Category::orderBy('name')->get());
         return view('admin.product.form', $this->compactVars());
     }
@@ -55,6 +47,14 @@ class ProductController extends Controller
         if ($request->has('category')) {
             $category = Category::find($request->input('category'));
             $product->category()->associate($category);
+        }
+
+        if ($request->hasFile('image') && $request->image->isValid()) {
+            $path = public_path() . '/uploads/img/products/';
+            $file = str_slug($product->name) . '.' . $request->image->extension();
+
+            $request->image->move($path, $file);
+            $product->image = $file;
         }
 
         if ($product->save()) {

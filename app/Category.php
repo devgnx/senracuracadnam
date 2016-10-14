@@ -12,6 +12,10 @@ class Category extends \Eloquent
     }
     public function getImageAttribute()
     {
-        return url('/uploads/img/categories/' . $this->attributes['id'] . '.jpg');
+        if (!empty($this->attributes['image'])) {
+            return url('/uploads/img/categories/' . $this->attributes['image']);
+        } else {
+            return '';
+        }
     }
 }

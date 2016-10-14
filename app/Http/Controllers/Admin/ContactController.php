@@ -15,7 +15,7 @@ class ContactController extends Controller
     protected $page  = 'contact';
     protected $title = 'Dados de Contato';
 
-    public function edit()
+    public function form()
     {
         $this->addVar('contact', Contact::first());
         return view('admin.contact.form', $this->compactVars());

@@ -19,12 +19,14 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 5, 2);
             $table->text('description');
             $table->string('url');
+            $table->string('image');
             $table->timestamps();
         });
 
         Schema::create('categories', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('image');
             $table->timestamps();
         });
     }

@@ -23,12 +23,37 @@ Route::group([
     Route::group(['middleware' => 'auth'], function() {
         Route::get('/', [
             'as' => 'home',
-            'uses' => 'AboutController@edit'
+            'uses' => 'AboutController@form'
+        ]);
+
+        Route::get('banners', [
+            'as' => 'banner:list',
+            'uses' => 'BannerController@index'
+        ]);
+
+        Route::get('banner/novo', [
+            'as' => 'banner:create',
+            'uses' => 'BannerController@form'
+        ]);
+
+        Route::get('banner/{id}', [
+            'as' => 'banner:edit',
+            'uses' => 'BannerController@form'
+        ]);
+
+        Route::post('banner/salvar/{id?}', [
+            'as' => 'banner:save',
+            'uses' => 'BannerController@save'
+        ]);
+
+        Route::get('banner/remover/{id}', [
+            'as' => 'banner:delete',
+            'uses' => 'BannerController@delete'
         ]);
 
         Route::get('sobre', [
             'as' => 'about:edit',
-            'uses' => 'AboutController@edit'
+            'uses' => 'AboutController@form'
         ]);
 
         Route::post('sobre', [
@@ -38,18 +63,19 @@ Route::group([
 
         Route::get('servico/novo', [
             'as' => 'service:create',
-            'uses' => 'AboutController@editService'
+            'uses' => 'AboutController@formService'
         ]);
 
         Route::get('servico/{id}', [
             'as' => 'service:edit',
-            'uses' => 'AboutController@editService'
+            'uses' => 'AboutController@formService'
         ]);
 
         Route::post('servico/salvar/{id?}', [
             'as' => 'service:save',
             'uses' => 'AboutController@saveService'
         ]);
+
         Route::get('servico/remover/{id}', [
             'as' => 'service:delete',
             'uses' => 'AboutController@deleteService'
@@ -72,12 +98,12 @@ Route::group([
 
         Route::get('produto/novo', [
             'as' => 'product:create',
-            'uses' => 'ProductController@create'
+            'uses' => 'ProductController@form'
         ]);
 
         Route::get('produto/{id}', [
             'as' => 'product:edit',
-            'uses' => 'ProductController@edit'
+            'uses' => 'ProductController@form'
         ]);
 
         Route::post('produto/salvar/{id?}', [
@@ -97,7 +123,7 @@ Route::group([
 
         Route::get('contato', [
             'as' => 'contact:edit',
-            'uses' => 'ContactController@edit'
+            'uses' => 'ContactController@form'
         ]);
 
         Route::post('contato', [

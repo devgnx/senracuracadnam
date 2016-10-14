@@ -4,19 +4,28 @@
   <div class="container">
     <h1>Produto</h1>
     <hr>
-    <form action="{{ route('admin::product:save', isset($product->id) ? $product->id : null) }}" method="post">
+    <form action="{{ route('admin::product:save', isset($product->id) ? $product->id : null) }}" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="row">
         <div class="col-xs-12 col-md-6">
           <div class="form-group">
             <label for="name">Nome</label>
-            <input id="name" name="name" type="text" class="form-control" value="{{ $product->name or old('name') }}">
+            <input id="name" name="name" type="text" class="form-control" value="{{ $product->name or old('name') }}" required>
+          </div>
+          <div class="form-group">
+            <label for="image">Imagem</label>
+            @if(!empty($product->image))
+              <a href="#" data-toggle="modal" data-target="#image-viewer" class="load-image-viewer thumbnail" style="max-width: 200px;">
+                <img src="{{ $product->image }}" class="img-responsive">
+              </a>
+            @endif
+            <input id="image" name="image" type="file" class="form-control" @if(empty($product->image)) required @endif>
           </div>
           <div class="form-group">
             <label for="price">Preço</label>
             <div class="input-group">
               <span class="input-group-addon">R$</span>
-              <input id="price" name="price" type="text" class="form-price form-control" value="{{ $product->price or old('price') }}">
+              <input id="price" name="price" type="text" class="form-price form-control" value="{{ $product->price or old('price') }}" required>
             </div>
           </div>
           <div class="form-group">
@@ -58,31 +67,39 @@
   </div>
 
   <div class="modal fade" id="new-category" tabindex="-1" role="dialog" aria-labelledby="new-category-label">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="new-category-label">Adicionar nova Categoria</h4>
-      </div>
-      <div class="modal-body">
-        <form action="{{ route('admin::category:save') }}">
-          <div class="form-group">
-            <label for="name">Nome</label>
-            <input id="name" name="name" type="text" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="image">Imagem</label>
-            <input id="image" name="image" type="file" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-        <button type="submit" class="btn btn-success">Salvar</button>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="new-category-label">Adicionar nova Categoria</h4>
+        </div>
+        <div class="modal-body">
+          <form action="{{ route('admin::category:save') }}">
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input id="name" name="name" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="image">Imagem</label>
+              <input id="image" name="image" type="file" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div id="image-viewer" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="padding: 5px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-bottom: 5px;"><span aria-hidden="true">&times;</span></button>
+        <img class="img-responsive" src="">
+      </div>
+  </div>
 @endsection
 
 @section('scripts')

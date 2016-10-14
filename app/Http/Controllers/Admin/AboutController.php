@@ -16,7 +16,7 @@ class AboutController extends Controller
     protected $page  = "about";
     protected $title = "Sobre a Empresa";
 
-    public function edit(Request $request)
+    public function form(Request $request)
     {
         $this->addVar('about', About::first());
 
@@ -35,7 +35,7 @@ class AboutController extends Controller
         }
     }
 
-    public function editService(Request $request)
+    public function formService(Request $request)
     {
        $request->session()->forget('warning');
        $service = $this->getService($request);
@@ -46,7 +46,7 @@ class AboutController extends Controller
        } else {
            return redirect()->route('admin::about:edit');
        }
-   }
+    }
 
     public function save(Request $request)
     {
@@ -74,6 +74,7 @@ class AboutController extends Controller
             return redirect()->back()->withInput()->with('errors', ["Não foi possíval salvar o serviço! Tente novamente"]);
         }
     }
+
     public function deleteService($id)
     {
         $service  = Service::findOrFail($id);

@@ -3,14 +3,14 @@
   <section id="main-slider" class="no-margin">
       <div class="carousel slide">
           <ol class="carousel-indicators">
-              <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-              <li data-target="#main-slider" data-slide-to="1"></li>
-              <li data-target="#main-slider" data-slide-to="2"></li>
+              @foreach($banners as $index => $banner)
+                <li data-target="#main-slider" data-slide-to="{{ $index }}" @if($index === 0) class="active" @endif></li>
+              @endforeach
           </ol>
           <div class="carousel-inner">
-            <div class="item active" style="background-image: url(uploads/img/slider/bg3.jpg)"></div><!--/.item-->
-            <div class="item" style="background-image: url(uploads/img/slider/bg2.jpg)"></div><!--/.item-->
-            <div class="item" style="background-image: url(uploads/img/slider/bg1.jpg)"></div><!--/.item-->
+            @foreach($banners as $index => $banner)
+              <div class="item @if($index === 0) active @endif" style="background-image: url({{ $banner->image }})"></div>
+            @endforeach
           </div><!--/.carousel-inner-->
       </div><!--/.carousel-->
       <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
