@@ -5,43 +5,19 @@
       decimal: ","
     });
 
-  }).on('click', '#new-category button[type="submit"]', function() {
-    $('#new-category form').submit();
+  }).on('added.category', function(data) {
+    var $category = $('#category').html('');
 
-  }).on('submit', '#new-category form', function(e) {
-    e.preventDefault();
-
-    var formData = new FormData(this);
-
-    $.ajax({
-      type: 'post',
-      url: this.action,
-      data: formData,
-      dataType: 'json',
-      cache: false,
-      contentType: false,
-      processData: false,
-    }).done(function(data) {
-      if (!data) return;
-
-      var $category = $('#category').html('');
-
-      $.each(data, function(key, category) {
-        $('<option></option>')
-          .val(category.value)
-          .text(category.label)
-          .attr('selected', category.selected)
-          .appendTo($category);
-      });
-
-      $('#new-category-trigger').hide();
-      $('#category-list').show();
-      $('#new-category').modal('hide');
+    $.each(data, function(key, category) {
+      $('<option></option>')
+        .val(category.value)
+        .text(category.label)
+        .attr('selected', category.selected)
+        .appendTo($category);
     });
 
-    return false;
-
-  }).on('hidden.bs.modal', '#new-category', function() {
-    $(this).find('form').get(0).reset();
+    $('#new-category-trigger').hide();
+    $('#category-list').show();
+    $('#category-form-modal').modal('hide');
   });
 })(jQuery, document, window);

@@ -15,15 +15,7 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $categories = array_map(function($category) use ($request) {
-            return array(
-                'value' => $category['id'],
-                'label' => $category['name'],
-                'selected' => ($request->get('id') == $category['id'])
-            );
-        }, Category::orderBy('name')->get()->toArray());
-
-        return response()->json($categories);
+        return response()->json(Category::orderBy('name')->get()->toArray());
     }
 
     public function save(Request $request)
@@ -39,10 +31,23 @@ class CategoryController extends Controller
 
         if ($category->save()) {
             $request->request->add(['id' => $category->id]);
-            return $this->index($request);
+            return $this->options($request);
         } else {
             return false;
         }
+    }
+
+    public function options(Request $request)
+    {
+        $categories = array_map(function($category) use ($request) {
+            return array(
+                'value' => $category['id'],
+                'label' => $category['name'],
+                'selected' => ($request->get('id') == $category['id'])
+            );
+        }, Category::orderBy('name')->get()->toArray());
+
+        return response()->json($categories);
     }
 
     public function delete($id)

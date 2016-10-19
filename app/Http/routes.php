@@ -27,6 +27,11 @@ Route::get('/contato', [
     'uses' => 'ContactController@index'
 ]);
 
+Route::get('/contato/enviar', [
+    'as' => 'contact.send',
+    'uses' => 'ContactController@sendMail'
+]);
+
 Route::group([
     'prefix' => 'carrinho',
     'namespace' => 'Order'

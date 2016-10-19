@@ -116,6 +116,16 @@ Route::group([
             'uses' => 'ProductController@delete'
         ]);
 
+        Route::get('categorias', [
+            'as' => 'category:list',
+            'uses' => 'CategoryController@index'
+        ]);
+
+        Route::get('categorias/input-options', [
+            'as' => 'category:options',
+            'uses' => 'CategoryController@options'
+        ]);
+
         Route::post('categoria/salvar/{id?}', [
             'as' => 'category:save',
             'uses' => 'CategoryController@save'

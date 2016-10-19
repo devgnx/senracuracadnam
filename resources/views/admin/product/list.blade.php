@@ -39,4 +39,6 @@
       </tbody>
     </table>
   </div>
+
+  @include('product.category-modal')
 @endsection
