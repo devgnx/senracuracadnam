@@ -91,6 +91,11 @@ Route::group([
             'uses' => '\App\Http\Controllers\Order\OrderController@view'
         ]);
 
+        Route::post('pedido/{id}/mudar-status/', [
+            'as' => 'order:save-status',
+            'uses' => '\App\Http\Controllers\Order\OrderController@saveStatus'
+        ]);
+
         Route::get('produtos', [
             'as' => 'product:list',
             'uses' => 'ProductController@index'

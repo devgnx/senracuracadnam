@@ -32,7 +32,7 @@
               <div class="features">
                   <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
                       <div class="feature-wrap">
-                          <i class="fa fa-{{ $service->icon }}"></i>
+                          <i class="fa {{ $service->icon }}"></i>
                           <h2>{{ $service->name }}</h2>
                           <h3>{{ $service->description }}</h3>
                       </div>

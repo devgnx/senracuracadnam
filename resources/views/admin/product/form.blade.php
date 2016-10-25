@@ -30,7 +30,7 @@
           </div>
           <div class="form-group">
             <label for="category">Categoria</label>
-            <div id="category-list" class="input-group" @if (!$categories->count()) style="display: none" @endif>
+            <div id="category-list" class="input-group" @if (false && !$categories->count()) style="display: none" @endif>
               <select id="category" name="category" class="form-control">
                 @foreach($categories as $category)
                   <option value="{{ $category->id }}"
@@ -39,15 +39,19 @@
                   </option>
                 @endforeach
               </select>
-              <span class="input-group-btn">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#form-category" type="button">
-                  <i class="fa fa-plus"></i>&nbsp; Novo
-                </button>
-              </span>
+              @if (false)
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#category-modal" type="button">
+                    <i class="fa fa-plus"></i>&nbsp; Novo
+                  </button>
+                </span>
+              @endif
             </div>
-            <button id="new-category-trigger" class="btn btn-primary" data-toggle="modal" data-target="#form-category" type="button" style="width: 100%; @if ($categories->count()) display: none; @endif">
-              <i class="fa fa-plus-circle"></i>&nbsp; Adicionar nova Categoria
-            </button>
+            @if (false)
+              <button id="new-category-trigger" class="btn btn-primary" data-toggle="modal" data-target="#category-modal" type="button" style="width: 100%; @if ($categories->count()) display: none; @endif">
+                <i class="fa fa-plus-circle"></i>&nbsp; Adicionar nova Categoria
+              </button>
+            @endif
           </div>
           <div class="form-group">
             <label>Descrição</label>
@@ -74,7 +78,7 @@
       </div>
   </div>
 
-  @include('product.category-modal')
+  @include('admin.product.category-modal')
 @endsection
 
 @section('scripts')

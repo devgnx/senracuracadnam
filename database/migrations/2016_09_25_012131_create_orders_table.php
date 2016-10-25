@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('telephone');
             $table->string('address');
             $table->string('total');
+            $table->string('delivered');
             $table->timestamps();
         });
 

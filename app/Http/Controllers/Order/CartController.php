@@ -20,7 +20,8 @@ class CartController extends Controller
         if ($request->session()->has('cart')) {
             $this->cart = $request->session()->get('cart');
         } else {
-            $this->cart = $request->session()->put('cart', new Cart);
+            $this->cart = new Cart;
+            $request->session()->put('cart', $this->cart);
         }
     }
 

@@ -13,7 +13,7 @@ class ContactController extends Controller
     use LayoutResolver;
 
     protected $page  = 'contact';
-    protected $title = 'Dados de Contato';
+    protected $title = 'Dados da Empresa';
 
     public function form()
     {
@@ -24,6 +24,7 @@ class ContactController extends Controller
     public function save(Request $request)
     {
         $contact = Contact::firstOrNew(['id' => 1]);
+        $contact->name = $request->input('name');
         $contact->telephone = $request->input('telephone');
         $contact->email     = $request->input('email');
         $contact->postal_code = $request->input('postal_code');

@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\About;
+
 class ContactController extends Controller
 {
     use Traits\LayoutResolver;
 
+    protected $page = "contact";
+    protected $title = "Contato";
+
     public function index()
     {
-        return view("contact", $this->compactVars());
+        $this->addVar('about', About::first());
+        return view('contact', $this->compactVars());
     }
 
     public function sendMail(Request $request)

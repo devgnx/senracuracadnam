@@ -32,6 +32,17 @@ class OrderController extends Controller
         return view('admin.orders.view', $this->compactVars());
     }
 
+    public function saveStatus(Request $request)
+    {
+        $order = Order::findOrFail($request->input('id'));
+        $order->delivered = $request->input('status');
+
+        return response()->json([
+            'success' => $order->save(),
+            'redirect' => route('admin::order:list')
+        ]);
+    }
+
     public function save(Request $request)
     {
         $cart = session('cart');
@@ -60,7 +71,7 @@ class OrderController extends Controller
 
             if ($request->isXmlHttpRequest()) {
                 session()->flash('success', [$message]);
-                return redirect()->route('cart.list');
+                return redirect()->route('product.categories');
             } else {
                 return redirect()->route('product.categories')->with("success", $message);
             }
@@ -68,7 +79,7 @@ class OrderController extends Controller
             $message = "Não foi possível finalizar o pedido!";
             if ($request->isXmlHttpRequest()) {
                 return session()->flash('error', [$message]);
-                return redirect()->route('cart.list');
+                return redirect()->route('product.categories');
             } else {
                 return redirect()->route('product.categories')->with("error", $message);
             }

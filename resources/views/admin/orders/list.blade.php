@@ -20,6 +20,7 @@
     </ul>
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade in active" id="undelivered">
+        {{-- TODO: Append order-list-content from ajax --}}
         @include('admin.orders.list-content', ['orders'=> $orders->undelivered])
       </div>
       <div role="tabpanel" class="tab-pane fade" id="delivered">
@@ -27,4 +28,13 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+  <script>
+    var getSaveStatusUtl = function(id) {
+      return "{{ route('admin::order:save-status', 'order.id') }}";
+    }
+  </script>
+  <script src="/js/orders.js"></script>
 @endsection

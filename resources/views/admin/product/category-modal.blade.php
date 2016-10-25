@@ -22,7 +22,7 @@
 
         @if (isset($products))
           <div class="category-list-container" data-route-url="{{ route('admin::category:list') }}" style="display: none;">
-            @include('product.category-list')
+            @include('admin.product.category-list')
           </div>
         @endif
       </div>

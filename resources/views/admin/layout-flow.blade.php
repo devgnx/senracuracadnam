@@ -74,10 +74,7 @@
     <!-- /.container -->
   </nav>
 
-  <div class="container" style="margin-bottom: 70px;">
-    @include('partial.messages')
-    @yield('content')
-  </div>
+  @yield('content-flow')
 
   <div class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">

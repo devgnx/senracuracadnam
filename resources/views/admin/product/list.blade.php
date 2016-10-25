@@ -14,6 +14,7 @@
         <tr>
           <th style="width: 40px;">#</th>
           <th>Nome</th>
+          <th>Categoria</th>
           <th style="width: 200px;"></th>
         </tr>
       </thead>
@@ -22,6 +23,7 @@
           <tr>
             <td>{{ $value->id }}</td>
             <td>{{ $value->name }}</td>
+            <td>{{ $value->category->name }}</td>
             <td class="text-right">
               <a class="btn btn-success" href="{{ route('admin::product:edit', $value->id) }}">
                 <i class="fa fa-pencil"></i> Editar
@@ -40,5 +42,5 @@
     </table>
   </div>
 
-  @include('product.category-modal')
+  @include('admin.product.category-modal')
 @endsection
