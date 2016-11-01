@@ -32,3 +32,7 @@ Route::get('/contato/enviar', [
     'as' => 'contact.send',
     'uses' => 'ContactController@sendMail'
 ]);
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

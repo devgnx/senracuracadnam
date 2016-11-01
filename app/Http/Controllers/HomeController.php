@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Banner;
-use App\About;
-use App\Contact;
-use App\Product;
-use App\Service;
+use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Traits\LayoutResolver;
 
 class HomeController extends Controller
 {
-    use LayoutResolver;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-    public $page  = "home";
-    public $title = "Mandacaru Carnes";
-
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $this->addVar('services', Service::all());
-        $this->addVar('banners', Banner::all());
-        $this->addVar('about', About::firstOrNew([]));
-        $this->title = $this->getVar('about')->title;
-
-        return view('home', $this->compactVars());
+        return view('home');
     }
 }

@@ -13,5 +13,11 @@
 
 .navbar-brand img {
   height: 54px;
+}
 
+#header .nav li {
+  margin-left: 5px;
+}
+#header .nav li:last {
+  margin-left: 10px;
 }
