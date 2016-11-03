@@ -10,25 +10,27 @@
       <input type="hidden" id="price" name="price">
 
       <div class="modal-body">
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-6">
-              <label for="name">Nome</label>
-              <input name="name" type="text" id="name" class="form-control" placeholder="Nome" required>
-            </div>
-            <div class="col-sm-6">
-              <label for="telephone">Telefone</label>
-              <input name="telephone" type="tel" id="telephone" class="form-control" placeholder="Telefone" required>
+        @if(!session('customer'))
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="name">Nome</label>
+                <input name="name" type="text" id="name" class="form-control" placeholder="Nome" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="telephone">Telefone</label>
+                <input name="telephone" type="tel" id="telephone" class="form-control" placeholder="Telefone" required>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="address">Endereço</label>
-          <input name="address" type="text" id="address" class="form-control" placeholder="Endereço" required>
-        </div>
+          <div class="form-group">
+            <label for="address">Endereço</label>
+            <input name="address" type="text" id="address" class="form-control" placeholder="Endereço" required>
+          </div>
+        @endif
         <div class="form-group">
           <label for="quantity">Quantidade (Kg)</label>
-          <input name="quantity" type="number" id="quantity" class="form-control" placeholder="Quantidade em kg" required>
+          <input name="quantity" type="text" id="quantity" class="form-control money" placeholder="Quantidade em kg" required>
         </div>
       </div>
       <div class="modal-footer">

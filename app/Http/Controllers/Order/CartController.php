@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Order;
 
 use App\Cart;
 use App\CartItem;
+use App\Customer;
 use App\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\LayoutResolver;
@@ -22,6 +23,13 @@ class CartController extends Controller
         } else {
             $this->cart = new Cart;
             $request->session()->put('cart', $this->cart);
+        }
+
+        if ($request->session()->has('customer')) {
+            $this->customer = $request->session()->get('customer');
+        } else {
+            $this->customer = new Customer;
+            $request->session()->put('customer', $this->customer);
         }
     }
 
@@ -106,16 +114,26 @@ class CartController extends Controller
 
     public function fillCustomerData(Request $request)
     {
-        if ($request->has('name')) {
-            $this->cart->name = $request->input('name');
+
+        if (empty($this->customer->name)) {
+            if ($request->has('name')) {
+                $this->customer->name = $request->input('name');
+                $this->cart->name = $request->input('name');
+            }
         }
 
-        if ($request->has('telephone')) {
-            $this->cart->telephone = $request->input('telephone');
+        if (empty($this->customer->telephone)) {
+            if ($request->has('telephone')) {
+                $this->customer->telephone = $request->input('telephone');
+                $this->cart->telephone = $request->input('telephone');
+            }
         }
 
-        if ($request->has('address')) {
-            $this->cart->address = $request->input('address');
+        if (empty($this->customer->address)) {
+            if ($request->has('address')) {
+                $this->customer->address = $request->input('address');
+                $this->cart->address = $request->input('address');
+            }
         }
     }
 

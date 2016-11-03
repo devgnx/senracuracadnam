@@ -14,7 +14,9 @@
     })()
   };
 
-  $(document).on("submit", "#add-to-cart-form", function(e) {
+  $(document).on('ready', function() {
+    $('.money').mask('000.000.000.000.000,00', {reverse: true});
+  }).on("submit", "#add-to-cart-form", function(e) {
     e.preventDefault();
 
     $.ajax({
