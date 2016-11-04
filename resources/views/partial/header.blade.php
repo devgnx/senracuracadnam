@@ -18,6 +18,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="btn btn-primary visible-xs-inline-block hidden-sm hidden-md hidden-lg pull-right" href="{{ route('cart.list') }}" data-toggle="modal" data-target="#view-cart" style="margin-right: 20px; padding: 6px;">
+          <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Carrinho
+          <span class="cart-item-count label label-danger">{{ !empty($cart) ? $cart->items()->count() : 0 }}</span>
+        </a>
         <a class="navbar-brand" href="{{ route("home") }}"><img src="/img/logo.png" alt="logo"></a>
       </div>
 
@@ -32,7 +36,7 @@
           <li @if($page->name == 'contact')class="active"@endif>
             <a href="{{ route('contact') }}">Contato</a>
           </li>
-          <li class="active">
+          <li class="active hidden-xs">
             <a href="{{ route('cart.list') }}" data-toggle="modal" data-target="#view-cart">
               <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Carrinho
               <span class="cart-item-count label label-danger">{{ !empty($cart) ? $cart->items()->count() : 0 }}</span>

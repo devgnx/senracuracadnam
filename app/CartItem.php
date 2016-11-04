@@ -29,7 +29,50 @@ class CartItem extends Eloquent
         return number_format($price, 2, ',', '.');
     }
 
-    public function getPrefixedPriceAttribute() {
+    public function getQuantityAttribute()
+    {
+        if (!empty($this->attributes['quantity'])) {
+            $quantity = (float) $this->attributes['quantity'];
+        } else {
+            $quantity = 0;
+        }
+
+        return $quantity;
+    }
+
+    public function getFormatedQuantityAttribute()
+    {
+        return number_format($this->getQuantityAttribute(), 3, ',', '.');
+    }
+
+    public function getSuffixedQuantityAttribute()
+    {
+        $quantityAttribute = $this->getQuantityAttribute();
+        $quantity = number_format($quantityAttribute, 3, '.', '');
+
+        switch ($quantity) {
+            case $quantityAttribute == 0:
+                return "0 Kgs.";
+
+            case ($quantity > 0 && $quantity < 1):
+                return $quantity . " gramas";
+
+            case ($quantity == 1):
+                return $quantity . " Kg.";
+
+            default:
+                return $quantity . " Kgs.";
+        }
+    }
+
+    public function getPrefixedPriceAttribute()
+    {
         return "R$ " . $this->getPriceAttribute();
+    }
+
+    public function save(array $options = [])
+    {
+        $this->attributes['quantity'] = (float) str_replace(',', '.', $this->attributes['quantity']);
+        return parent::save($options);
     }
 }

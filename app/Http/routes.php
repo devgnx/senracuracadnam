@@ -8,6 +8,8 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
+Route::any('(.*)', 'Controller@createCart');
+
 Route::get('/produto/{id}', [
     'as' => 'product.index',
     'uses' => 'ProductController@index'

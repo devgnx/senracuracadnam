@@ -16,6 +16,7 @@
 
   $(document).on('ready', function() {
     $('.money').mask('000.000.000.000.000,00', {reverse: true});
+    $('.weight').mask('000000000000000,000', {reverse: true});
   }).on("submit", "#add-to-cart-form", function(e) {
     e.preventDefault();
 

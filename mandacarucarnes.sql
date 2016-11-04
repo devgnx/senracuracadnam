@@ -140,7 +140,7 @@ CREATE TABLE `cart_items` (
   `product_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `price` decimal(5,2) NOT NULL,
-  `quantity` decimal(5,2) NOT NULL,
+  `quantity` decimal(5,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -278,7 +278,7 @@ CREATE TABLE `order_items` (
   `product_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `price` decimal(5,2) NOT NULL,
-  `quantity` decimal(5,2) NOT NULL,
+  `quantity` decimal(5,3) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)

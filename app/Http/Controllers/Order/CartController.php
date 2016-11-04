@@ -14,25 +14,6 @@ class CartController extends Controller
 {
     use LayoutResolver;
 
-    private $cart;
-
-    public function __construct(Request $request)
-    {
-        if ($request->session()->has('cart')) {
-            $this->cart = $request->session()->get('cart');
-        } else {
-            $this->cart = new Cart;
-            $request->session()->put('cart', $this->cart);
-        }
-
-        if ($request->session()->has('customer')) {
-            $this->customer = $request->session()->get('customer');
-        } else {
-            $this->customer = new Customer;
-            $request->session()->put('customer', $this->customer);
-        }
-    }
-
     public function index()
     {
         $this->addVar('cart', $this->cart);
@@ -49,8 +30,20 @@ class CartController extends Controller
     {
         $this->fillCustomerData($request);
 
+        if ((float)$request->input('quantity') === 0) {
+            $message = 'Você deve selecionar a quantidade antes de prosseguir!';
+            if ($request->isXmlHttpRequest()) {
+                session()->flash('error', [$message]);
+                return $this->index();
+            } else {
+                return redirect()->route('cart.index')->with("error", [
+                    $message
+                ]);
+            }
+        }
+
         $item = new CartItem();
-        $item->quantity = $request->input('quantity', 1);
+        $item->quantity = $request->input('quantity');
 
         if ($request->has('id')) {
             $product = Product::find($request->input('id'));
@@ -58,6 +51,8 @@ class CartController extends Controller
             $item->price = $product->price;
             $item->product()->associate($product);
         }
+
+        $this->cart->calcTotal();
 
         if ($this->cart->save()) {
             $this->cart->items()->save($item);

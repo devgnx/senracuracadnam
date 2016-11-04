@@ -25,8 +25,8 @@
                 @foreach($cart->items()->get() as $item)
                   <tr>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->suffixedQuantity }}</td>
+                    <td>{{ $item->prefixedPrice }}</td>
                     <td class="text-center">
                       <a class="remove-item" href="{{ route('cart.remove', $item->id) }}">
                         <i class="fa fa-trash text-danger"></i>

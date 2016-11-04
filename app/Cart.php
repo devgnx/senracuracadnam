@@ -14,14 +14,28 @@ class Cart extends Eloquent
         return $this->hasMany(CartItem::class);
     }
 
+    public function calcTotal()
+    {
+        $total = 0;
+        foreach ($this->items()->get() as $item) {
+            $total += ($item->attributes['price'] * $item->attributes['quantity']);
+        }
+
+        return $this->attributes['total'] = $total;
+    }
+
     public function getTotalAttribute()
     {
-        $total = $this->items()->sum('price');
-        return $total ? $total : 0;
+        return $this->calcTotal();
+    }
+
+    public function setTotalAttribute($do_not_set = null)
+    {
+        return $this->calcTotal();
     }
 
     public function getTotalFormated($prefix = 'R$')
     {
-        return ($prefix !== null ? $prefix . " " : '') . number_format($this->total, 2, ',', '.');
+        return ($prefix !== null ? $prefix . " " : '') . number_format($this->calcTotal(), 2, ',', '.');
     }
 }

@@ -30,7 +30,7 @@
         @endif
         <div class="form-group">
           <label for="quantity">Quantidade (Kg)</label>
-          <input name="quantity" type="text" id="quantity" class="form-control money" placeholder="Quantidade em kg" required>
+          <input name="quantity" type="text" id="quantity" class="form-control weight" placeholder="Quantidade em kg" required>
         </div>
       </div>
       <div class="modal-footer">

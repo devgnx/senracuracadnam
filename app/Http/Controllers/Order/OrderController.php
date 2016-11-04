@@ -63,6 +63,8 @@ class OrderController extends Controller
                 $order->items()->save($orderItem);
             }
 
+            $order->calcTotal();
+
             $this->sendMail($order);
 
             session()->forget('cart');

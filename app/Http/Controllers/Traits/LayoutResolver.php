@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Traits;
 
 use App\Contact;
+use Illuminate\Http\Request;
 
 trait LayoutResolver
 {
     private $viewAttributes = [];
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->viewAttributes['page'] = (object) [
             'title' => null,
@@ -16,6 +17,8 @@ trait LayoutResolver
         ];
 
         $this->updateDefaultAttributes();
+
+        return parent::__construct($request);
     }
 
     public function updateDefaultAttributes()
