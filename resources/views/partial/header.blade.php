@@ -36,6 +36,12 @@
           <li @if($page->name == 'contact')class="active"@endif>
             <a href="{{ route('contact') }}">Contato</a>
           </li>
+          <li @if($page->name == 'about')class="active"@endif>
+            <a href="{{ route('about') }}">Sobre</a>
+          </li>
+          <li @if($page->name == 'suggestion')class="active"@endif>
+            <a href="{{ route('suggestions') }}">Sugestões</a>
+          </li>
           <li class="active hidden-xs">
             <a href="{{ route('cart.list') }}" data-toggle="modal" data-target="#view-cart">
               <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Carrinho
